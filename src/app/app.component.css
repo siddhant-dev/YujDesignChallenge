@@ -1,0 +1,76 @@
+.head {
+    
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.logo{
+    margin-left: 10px;
+    justify-self: start;
+    font-family: "SFUI-bold";
+}
+
+.head-elements {
+    margin-top: 5px;
+    width: 20%;
+    margin-left: auto;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.avatar{
+    width: 40px;
+    border-radius: 50%;
+}
+
+.navbar{
+    position: fixed;
+    background-color: var(--bg-primary);
+    width: 55px;
+    height: 100%;
+}
+
+.navbar-nav {
+   
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 95%;
+    margin-left: 15px;
+    
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    height: 4rem;
+    
+  }
+  .nav-item {
+    width: 100%;
+    
+  }
+ 
+  .nav-item:nth-last-child(2) {
+    margin-top: auto;
+    /* height: auto; */
+  }
+
+  a:active{
+      color: var(--text-primary);
+  }
+  
+  main {
+      
+      margin-left: 5rem;
+      padding: 1rem;
+  }

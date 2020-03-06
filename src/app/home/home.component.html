@@ -1,0 +1,127 @@
+<div class="top">
+  <span>Create Loads</span>
+
+  <form [formGroup] = "myForm" class="form">
+
+
+    <div>
+      <mat-form-field  style="width: 200px;">
+        <mat-label>Search by Load# 
+          
+        </mat-label>
+        
+        <input matInput fromControlName="search">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" >
+          <mat-icon>search</mat-icon>
+        </button>
+          <mat-error  *ngIf="myForm.controls.search.invalid && myForm.controls.search.touched">
+                                Please enter a value
+                                </mat-error> 
+        
+      </mat-form-field>
+    </div>
+
+  <div>
+    <mat-form-field >
+      <mat-label>From</mat-label>
+      <input matInput [matDatepicker]="from" formControlName="from">
+  <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+  <mat-datepicker #from></mat-datepicker> 
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>To</mat-label>
+      <input matInput [matDatepicker]="to" fromControlName = "to">
+  <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+  <mat-datepicker #to></mat-datepicker> 
+    </mat-form-field>
+  </div>
+  </form>
+      
+</div>
+
+<div class="middle">
+  <mat-icon>remove_red_eye</mat-icon>
+  <mat-form-field>
+    <mat-label>WatchList</mat-label>
+    <select matNativeControl required>
+      <option value="default">Default</option>
+    </select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Add Selected to</mat-label>
+    <mat-select  name="food" >
+      <mat-option *ngFor="let o of opt" [value]="o.value">
+        {{o.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+<table class="data"  cdkDropList [cdkDropListData]="dataSource" cdkDropListConnectedTo="read" (cdkDropListDropped)="drop($event)">
+    <th></th>
+    <th>Sr#</th>
+    <th>Order#</th>
+    <th>Supplier</th>
+    <th>Ship From</th>
+    <th>Ship Date</th>
+    <th>Deliver To</th>
+    <th>Delivery Date</th>
+    <th>Gr. Wt.(Lbs)</th>
+    <th>Qty.</th>
+    <th>Vol.(Cu.Ft.)</th>
+    <tr *ngFor="let x of dataSource" [cdkDragData]="x"  cdkDrag >
+        <td   cdkDragHandle > <mat-icon>drag_indicator</mat-icon> </td>
+        <td>{{ x.position}}</td>
+        <td>{{ x.order_no}}</td>
+        <td>{{ x.suppiler}}</td>
+        <td>{{ x.ship_from}}</td>
+        <td>{{ x.ship_date | date:'M/dd/yyyy'}}</td>
+        <td>{{ x.deliver_to}}</td>
+        <td>{{ x.delivery_date | date:'M/dd/yyyy'}}</td>
+        <td>{{ x.gross_wt}}</td>
+        <td>{{ x.qtn}}</td>
+        <td>{{ x.vol}}</td>
+
+      </tr>
+</table>
+
+
+<div class="bottom">
+  <div class="card" id = "read"
+cdkDropList
+    [cdkDropListData]="even"
+    (cdkDropListDropped)="drop($event)">
+    <div  class="container"
+      *ngFor="let el of even" cdkDrag
+      [cdkDragData]="el">
+      <div *ngIf = "el">
+        <table class="data2">
+          <tr>
+            <td class="text">Sr#: </td>
+            <td>{{el.position}}</td>
+          </tr>
+          <tr>
+            <td class="text">Order#</td>
+            <td>{{el.order_no}}</td>
+          </tr>
+          <tr>
+            <td class="text">Supplier: </td>
+           
+            <td>{{el.suppiler}}</td>
+            
+          </tr>
+          <tr>
+            <td class="text">Deliver To: </td>
+            <td>{{el.deliver_to}}</td>
+          </tr>
+        </table>
+
+
+      </div>
+  </div>
+
+</div>
+
+<button mat-fab color="white" (click)="clear()"> <mat-icon>add</mat-icon> </button>
+</div>
